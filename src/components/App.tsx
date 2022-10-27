@@ -1,59 +1,38 @@
-import Avatar from 'components/Avatar'
+import { useState } from 'react'
 
 export function App() {
-  const nome = 'Alerrando'
-  const usuarios = [
-    {
-      primeiroNome: 'Leo',
-      segundoNome: 'rogo',
-      isAdmin: false
-    },
-    {
-      primeiroNome: 'Alerrando',
-      segundoNome: 'Breno',
-      isAdmin: true
-    },
-    {
-      primeiroNome: 'Daniel',
-      segundoNome: 'Raposo',
-      isAdmin: true
-    }
-  ]
+  const [count, setCount] = useState(0)
 
   return (
     <div className="flex h-screen bg-black">
       <div className="m-auto grid">
-        <Component nome="Alerrando" sobrenome="Breno" />
-        {usuarios.map((usuario: any, index: number) => (
-          <>
-            <Component
-              key={index}
-              primeiroNome={usuario.primeiroNome}
-              segundoNome={usuario.segundoNome}
-              isAdmin={usuario.isAdmin}
-            />
-          </>
-        ))}
+        <div className="text-center my-8">
+          <h1 className="text-white text-3xl">Contador {count}</h1>
+        </div>
+        <div className="flex">
+          <button
+            className="py-1 px-4 text-black bg-[#4FA095] hover:text-white hover:bg-red-600 transition-all"
+            onClick={() => setCount(count + 1)}
+          >
+            {' '}
+            Incrementar
+          </button>
+          <button
+            className="py-1 px-4 mx-4 text-black bg-[#4FA095] hover:text-white hover:bg-red-600 transition-all"
+            onClick={() => setCount(0)}
+          >
+            {' '}
+            Resetar
+          </button>
+          <button
+            className="py-1 px-4 text-black bg-[#4FA095] hover:text-white hover:bg-red-600 transition-all"
+            onClick={() => (count != 0 ? setCount(count - 1) : null)}
+          >
+            {' '}
+            Diminuir
+          </button>
+        </div>
       </div>
-    </div>
-  )
-}
-
-function Component(props: any) {
-  const { primeiroNome, segundoNome, isAdmin } = props
-  return (
-    <div className="font-bold w-32 shadow-2xl">
-      {isAdmin ? (
-        <div className="text-blue-600 flex items-center justify-between">
-          <h1>{primeiroNome}</h1>
-          <h2>{segundoNome}</h2>
-        </div>
-      ) : (
-        <div className="text-red-600 flex items-center justify-between">
-          <h1>{primeiroNome}</h1>
-          <h2>{segundoNome}</h2>
-        </div>
-      )}
     </div>
   )
 }
